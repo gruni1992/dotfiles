@@ -211,7 +211,7 @@ bar {
 # Application Shortcuts
 bindsym $hyper+g exec google-chrome
 bindsym $hyper+p exec postman
-bindsym $hyper+i exec idea
+bindsym $hyper+i exec "killall -9 java ; idea"
 bindsym $meta+l exec i3lock
 
 # Audio
