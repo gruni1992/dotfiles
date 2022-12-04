@@ -120,8 +120,8 @@ set $ws1 "Teams"
 set $ws2 "Outlook"
 set $ws3 "Code"
 set $ws4 "Chrome/Terminal"
-set $ws5 "5"
-set $ws6 "6"
+set $ws5 "Postman"
+set $ws6 "Notes"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
@@ -213,6 +213,8 @@ bindsym $hyper+g exec google-chrome
 bindsym $hyper+p exec postman
 bindsym $hyper+i exec "killall -9 java ; idea"
 bindsym $meta+l exec i3lock
+bindsym $hyper+t exec --no-startup-id google-chrome --new-window --app=https://teams.microsoft.com/_\?lm\=deeplink\&lmsrc\=NeutralHomePageWeb\&cmpid\=WebSignIn\&culture\=de-de\&country\=de\#/conversations/19:58d4e3cc-1f67-42f8-b416-ab2aec838abe_b89c26f7-db14-4c15-b710-566bffcbe5d9@unq.gbl.spaces\?ctx\=chat
+bindsym $hyper+o exec --no-startup-id google-chrome --new-window --app=https://outlook.office365.com/mail/
 
 # Audio
 exec pactl set-default-sink alsa_output.usb-Razer_Razer_BlackShark_V2_Pro-00.analog-stereo
@@ -229,10 +231,14 @@ assign [class="Google-chrome" instance="teams.microsoft.com"] $ws1
 assign [class="Google-chrome" instance="outlook.office365.com__mail"] $ws2
 assign [class="idea"] $ws3
 assign [class="Gnome-terminal"] $ws4
+assign [instance="postman"] $ws5
+assign [window_role="browser"] $ws4
 
 exec --no-startup-id google-chrome --new-window --app=https://teams.microsoft.com/_\?lm\=deeplink\&lmsrc\=NeutralHomePageWeb\&cmpid\=WebSignIn\&culture\=de-de\&country\=de\#/conversations/19:58d4e3cc-1f67-42f8-b416-ab2aec838abe_b89c26f7-db14-4c15-b710-566bffcbe5d9@unq.gbl.spaces\?ctx\=chat
 exec --no-startup-id google-chrome --new-window --app=https://outlook.office365.com/mail/
 exec --no-startup-id idea
 exec --no-startup-id i3-sensible-terminal
-exec --no-startup-id workspace $ws4
-
+exec --no-startup-id postman 
+exec --no-startup-id google-chrome --new-window lise.de
+# todoist, notion, jira
+# urgency on notification
