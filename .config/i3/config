@@ -32,6 +32,8 @@ font pango:monospace 8
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
+exec --no-startup-id $HOME/scripts/sss auto
+
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
@@ -56,8 +58,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+space exec rofi -show combi
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -106,7 +108,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -116,15 +118,15 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "Teams"
-set $ws2 "Outlook"
-set $ws3 "Code"
-set $ws4 "Chrome/Terminal"
-set $ws5 "Postman"
-set $ws6 "Notes"
+set $ws1 "1:Teams"
+set $ws2 "2:Outlook"
+set $ws3 "3:Code"
+set $ws4 "4:Chrome"
+set $ws5 "5:Postman"
+set $ws6 "6:Notes"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9"
+set $ws9 "9:Terminal"
 set $ws10 "10"
 
 workspace $ws1 output $laptop 
@@ -183,7 +185,16 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
+
+set $mode_output_setup 1 - Teams-Chrome, 2 - Teams-Code, 3 - Chrome-Code 
+
+mode "$mode_output_setup" {
+    bindsym 1 workspace $ws1; move workspace to output $home-left; move workspace to output $cycler-left; workspace $ws4; move workspace to output $cycler-right;move workspace to output $home-right; mode "default"
+    bindsym 2 workspace $ws1; move workspace to output $home-left; move workspace to output $cycler-left; workspace $ws3; move workspace to output $cycler-right;move workspace to output $home-right; mode "default"
+    bindsym 3 workspace $ws1; move workspace to output $laptop; workspace $ws4; move workspace to output $cycler-left; move workspace to output $home-left;  workspace $ws3; move workspace to output $cycler-right;move workspace to output $home-right; mode "default"
+    bindsym Escape mode "default"
+}
+
 
 set $mode_system System (e) logout, (s) suspend, (r) reboot, (CTRL+s) shutdown
 
@@ -199,10 +210,8 @@ mode "$mode_system" {
 }
 
 bindcode $f24 mode "$mode_system"
-
-# Polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
+bindsym $mod+t mode "$mode_output_setup"
+bindsym $mod+r mode "resize"
 # Application Shortcuts
 bindsym $hyper+g exec google-chrome
 bindsym $hyper+p exec postman
@@ -216,24 +225,30 @@ exec pactl set-default-sink alsa_output.usb-Razer_Razer_BlackShark_V2_Pro-00.ana
 exec pactl set-default-source alsa_output.usb-Razer_Razer_BlackShark_V2_Pro-00.analog-stereo.monitor
 
 # On Startup
-exec sss auto
 exec btms
 focus_follows_mouse no
-
+exec --no-startup-id ulauncher
+for_window[class="uauncher"] border none
 
 
 assign [class="Google-chrome" instance="teams.microsoft.com"] $ws1
 assign [class="Google-chrome" instance="outlook.office365.com__mail"] $ws2
 assign [class="idea"] $ws3
-assign [class="Gnome-terminal"] $ws4
 assign [instance="postman"] $ws5
 assign [window_role="browser"] $ws4
+assign [class="Google-chrome" instance="todoist.com"] $ws6
+assign [class="Google-chrome" instance="www.notion.so"] $ws6
 
 exec --no-startup-id google-chrome --new-window --app=https://teams.microsoft.com/_\?lm\=deeplink\&lmsrc\=NeutralHomePageWeb\&cmpid\=WebSignIn\&culture\=de-de\&country\=de\#/conversations/19:58d4e3cc-1f67-42f8-b416-ab2aec838abe_b89c26f7-db14-4c15-b710-566bffcbe5d9@unq.gbl.spaces\?ctx\=chat
 exec --no-startup-id google-chrome --new-window --app=https://outlook.office365.com/mail/
+exec --no-startup-id google-chrome --new-window --app=https://todoist.com/app/today
 exec --no-startup-id idea
-exec --no-startup-id i3-sensible-terminal
 exec --no-startup-id postman 
 exec --no-startup-id google-chrome --new-window lise.de
+exec --no-startup-id google-chrome --new-window --app=https://www.notion.so/Dailies-91522b1c06d34044b7bae408a30c7a4c
 # todoist, notion, jira
 # urgency on notification
+#
+# Polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
