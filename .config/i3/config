@@ -100,7 +100,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+# bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 # bindsym $mod+e layout toggle split
 
@@ -185,13 +185,38 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
+set $left_r LEFT
+set $l_right RIGHT
 
-set $mode_output_setup 1 - Teams-Chrome, 2 - Teams-Code, 3 - Chrome-Code 
+mode "$left_r" {
+    bindsym T workspace $ws1; move workspace to output $home-left; move workspace to output $cycler-left; mode "$l_right"
+    bindsym O workspace $ws2; move workspace to output $home-left; move workspace to output $cycler-left; mode "$l_right"
+    bindsym I workspace $ws3; move workspace to output $home-left; move workspace to output $cycler-left; mode "$l_right"
+    bindsym C workspace $ws4; move workspace to output $home-left; move workspace to output $cycler-left; mode "$l_right"
+    bindsym P workspace $ws5; move workspace to output $home-left; move workspace to output $cycler-left; mode "$l_right"
+    bindsym N workspace $ws6; move workspace to output $home-left; move workspace to output $cycler-left; mode "$l_right"
+    bindsym E workspace $ws9; move workspace to output $home-left; move workspace to output $cycler-left; mode "$l_right"
+    bindsym Escape mode "default"
+}
+
+mode "$l_right" {
+    bindsym T workspace $ws1; move workspace to output $home-right; move workspace to output $cycler-right; mode "default"
+    bindsym O workspace $ws2; move workspace to output $home-right; move workspace to output $cycler-right; mode "default"
+    bindsym I workspace $ws3; move workspace to output $home-right; move workspace to output $cycler-left; mode "default"
+    bindsym C workspace $ws4; move workspace to output $home-right; move workspace to output $cycler-left; mode "default"
+    bindsym P workspace $ws5; move workspace to output $home-right; move workspace to output $cycler-left; mode "default"
+    bindsym N workspace $ws6; move workspace to output $home-right; move workspace to output $cycler-left; mode "default"
+    bindsym E workspace $ws9; move workspace to output $home-right; move workspace to output $cycler-left; mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_output_setup C - T-Chrome, I - T-IntelliJ, N - T-Notes, P - Chrome-Intellij 
 
 mode "$mode_output_setup" {
-    bindsym 1 workspace $ws1; move workspace to output $home-left; move workspace to output $cycler-left; workspace $ws4; move workspace to output $cycler-right;move workspace to output $home-right; mode "default"
-    bindsym 2 workspace $ws1; move workspace to output $home-left; move workspace to output $cycler-left; workspace $ws3; move workspace to output $cycler-right;move workspace to output $home-right; mode "default"
-    bindsym 3 workspace $ws1; move workspace to output $laptop; workspace $ws4; move workspace to output $cycler-left; move workspace to output $home-left;  workspace $ws3; move workspace to output $cycler-right;move workspace to output $home-right; mode "default"
+    bindsym C workspace $ws1; move workspace to output $home-left; move workspace to output $cycler-left; workspace $ws4; move workspace to output $cycler-right;move workspace to output $home-right; mode "default"
+    bindsym I workspace $ws1; move workspace to output $home-left; move workspace to output $cycler-left; workspace $ws3; move workspace to output $cycler-right;move workspace to output $home-right; mode "default"
+    bindsym N workspace $ws1; move workspace to output $home-left; move workspace to output $cycler-left; workspace $ws6; move workspace to output $cycler-right;move workspace to output $home-right; mode "default"
+    bindsym P workspace $ws1; move workspace to output $laptop; workspace $ws4; move workspace to output $cycler-left; move workspace to output $home-left;  workspace $ws3; move workspace to output $cycler-right;move workspace to output $home-right; mode "default"
     bindsym Escape mode "default"
 }
 
@@ -211,6 +236,7 @@ mode "$mode_system" {
 
 bindcode $f24 mode "$mode_system"
 bindsym $mod+t mode "$mode_output_setup"
+bindsym $mod+s mode "$left_r"
 bindsym $mod+r mode "resize"
 # Application Shortcuts
 bindsym $hyper+g exec google-chrome
@@ -244,7 +270,7 @@ exec --no-startup-id google-chrome --new-window --app=https://outlook.office365.
 exec --no-startup-id google-chrome --new-window --app=https://todoist.com/app/today
 exec --no-startup-id idea
 exec --no-startup-id postman 
-exec --no-startup-id google-chrome --new-window lise.de
+exec --no-startup-id google-chrome --new-window lise.harvestapp.com/time
 exec --no-startup-id google-chrome --new-window --app=https://www.notion.so/Dailies-91522b1c06d34044b7bae408a30c7a4c
 # todoist, notion, jira
 # urgency on notification
