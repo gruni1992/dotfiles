@@ -32,7 +32,7 @@ font pango:monospace 8
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
-exec --no-startup-id $HOME/scripts/sss auto
+# exec --no-startup-id $HOME/scripts/sss auto
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -255,7 +255,7 @@ exec btms
 focus_follows_mouse no
 exec --no-startup-id ulauncher
 for_window[class="uauncher"] border none
-
+for_window [class=".*"] [floating] move absolute position center
 
 assign [class="Google-chrome" instance="teams.microsoft.com"] $ws1
 assign [class="Google-chrome" instance="outlook.office365.com__mail"] $ws2
@@ -265,7 +265,7 @@ assign [window_role="browser"] $ws4
 assign [class="Google-chrome" instance="todoist.com"] $ws6
 assign [class="Google-chrome" instance="www.notion.so"] $ws6
 
-exec --no-startup-id google-chrome --new-window --app=https://teams.microsoft.com/_\?lm\=deeplink\&lmsrc\=NeutralHomePageWeb\&cmpid\=WebSignIn\&culture\=de-de\&country\=de\#/conversations/19:58d4e3cc-1f67-42f8-b416-ab2aec838abe_b89c26f7-db14-4c15-b710-566bffcbe5d9@unq.gbl.spaces\?ctx\=chat
+exec --no-startup-id google-chrome --new-window --app=https://teams.microsoft.com/_/?lm\=deeplink\&lmsrc\=NeutralHomePageWeb\&cmpid\=WebSignIn\&culture\=de-de\&country\=de#/apps/fdde2a80-7975-4134-a0b8-f689e87cb7b4/sections/sharepointportal_0ca63d3d-8fe8-46ce-b8b9-b75e0a1cd9d9
 exec --no-startup-id google-chrome --new-window --app=https://outlook.office365.com/mail/
 exec --no-startup-id google-chrome --new-window --app=https://todoist.com/app/today
 exec --no-startup-id idea
@@ -276,5 +276,7 @@ exec --no-startup-id google-chrome --new-window --app=https://www.notion.so/Dail
 # urgency on notification
 #
 # Polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh -c "sleep 5"
+
+exec --no-startup-id "autorandr -c"  
 

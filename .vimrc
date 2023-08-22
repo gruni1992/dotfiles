@@ -6,6 +6,4 @@ set tabstop=4 shiftwidth=4 expandtab
 
 nmap oo o<ESC>
 nmap OO O<ESC>
-imap ;; <ESC>A;<ESC>
-imap ,, <ESC>A,<ESC>
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC | echom "Reloaded $NVIMRC" 
