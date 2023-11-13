@@ -245,6 +245,7 @@ bindsym $hyper+i exec "killall -9 java ; idea"
 bindsym $meta+l exec i3lock
 bindsym $hyper+t exec --no-startup-id google-chrome --new-window --app=https://teams.microsoft.com/_\?lm\=deeplink\&lmsrc\=NeutralHomePageWeb\&cmpid\=WebSignIn\&culture\=de-de\&country\=de\#/conversations/19:58d4e3cc-1f67-42f8-b416-ab2aec838abe_b89c26f7-db14-4c15-b710-566bffcbe5d9@unq.gbl.spaces\?ctx\=chat
 bindsym $hyper+o exec --no-startup-id google-chrome --new-window --app=https://outlook.office365.com/mail/
+bindsym Print exec --no-startup-id flameshot gui
 
 # Audio
 exec pactl set-default-sink alsa_output.usb-Razer_Razer_BlackShark_V2_Pro-00.analog-stereo
@@ -272,6 +273,7 @@ exec --no-startup-id idea
 exec --no-startup-id postman 
 exec --no-startup-id google-chrome --new-window lise.harvestapp.com/time
 exec --no-startup-id google-chrome --new-window --app=https://www.notion.so/Dailies-91522b1c06d34044b7bae408a30c7a4c
+exec --no-startup-id flameshot
 # todoist, notion, jira
 # urgency on notification
 #
