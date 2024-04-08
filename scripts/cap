@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+source ~/.zshrc
+config add -u :/
+config commit -m "config changed"
+config push
