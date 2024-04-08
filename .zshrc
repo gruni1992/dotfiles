@@ -27,9 +27,7 @@ ZSH_THEME="robbyrussell"
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
@@ -107,3 +105,16 @@ setopt complete_aliases
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+newscript() {
+    SCRIPT_DIR="$HOME/scripts/$1"
+    touch "$SCRIPT_DIR"
+    echo "#!/usr/bin/env bash" > "$SCRIPT_DIR"
+    chmod +x "$SCRIPT_DIR"
+    vim "$SCRIPT_DIR"
+}
+
+changescript() {
+    SCRIPT_DIR="$HOME/scripts/$1"
+    vim "$SCRIPT_DIR"
+}
