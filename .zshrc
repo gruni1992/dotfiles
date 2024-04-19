@@ -1,5 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$PATH
 export PATH="$PATH:$HOME/.kubelogin/bin:$HOME/scripts:/opt/gradle/gradle-8.7/bin"
 
 # Path to your oh-my-zsh installation.
