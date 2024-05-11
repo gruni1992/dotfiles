@@ -3,6 +3,7 @@
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH="$PATH:$HOME/.kubelogin/bin:$HOME/scripts:/opt/gradle/gradle-8.7/bin"
+alias sshagent='eval "$(ssh-agent -s)"'
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -120,3 +121,5 @@ changescript() {
     SCRIPT_DIR="$HOME/scripts/$1"
     vim "$SCRIPT_DIR"
 }
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
