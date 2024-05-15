@@ -3,7 +3,8 @@
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH="$PATH:$HOME/.kubelogin/bin:$HOME/scripts:/opt/gradle/gradle-8.7/bin"
-alias sshagent='eval "$(ssh-agent -s)"'
+export PATH="$PATH:/usr/local/go/bin"
+alias sshagent='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_rsa'
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"

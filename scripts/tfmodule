@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Check if module name is provided
+if [ -z "$1" ]
+then
+  echo "Usage: $0 <module_name>"
+  exit 1
+fi
+
+MODULE_NAME=$1
+MODULE_DIR="../modules/$MODULE_NAME"
+
+# Create the module directory and empty files
+mkdir -p $MODULE_DIR && touch $MODULE_DIR/"$MODULE_NAME.tf" $MODULE_DIR/"$MODULE_NAME-vars.tf" $MODULE_DIR/"$MODULE_NAME-outputs.tf"
+
+echo "Empty module files created in $MODULE_DIR"

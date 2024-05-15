@@ -1,4 +1,4 @@
-# set vars
+# set var
 set $mod Mod4
 set $alt Mod1
 set $meta Mod4
@@ -219,7 +219,8 @@ bindsym $mod+r mode "resize"
 # Application Shortcuts
 bindsym $hyper+g exec vivaldi
 bindsym $hyper+p exec postman
-bindsym $hyper+i exec idea # "killall -9 java ; idea"
+bindsym $hyper+i exec idea 
+bindsym $hyber+[ exec --no-startup-id vivaldi --new-window --app=https://calendar.google.com
 bindsym $meta+l exec i3lock
 bindsym $hyper+t exec --no-startup-id vivaldi --new-window --app=https://teams.microsoft.com/_\?lm\=deeplink\&lmsrc\=NeutralHomePageWeb\&cmpid\=WebSignIn\&culture\=de-de\&country\=de\#/conversations/19:58d4e3cc-1f67-42f8-b416-ab2aec838abe_b89c26f7-db14-4c15-b710-566bffcbe5d9@unq.gbl.spaces\?ctx\=chat
 bindsym $hyper+o exec --no-startup-id vivaldi --new-window --app=https://outlook.office365.com/mail/
