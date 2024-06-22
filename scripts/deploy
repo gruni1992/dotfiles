@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Get current working directory
+CURRENT_DIR=$(pwd)
+
+# Extract project and service name from path
+# Assumes the structure is /some/path/projectName/serviceName
+PROJECT_NAME=$(basename $(dirname "${CURRENT_DIR}"))
+SERVICE_NAME=$(basename "${CURRENT_DIR}")
+
+# Construct the image name
+IMAGE_NAME="harbor.gruni.cloud/${PROJECT_NAME}/${SERVICE_NAME}"
+
+# Get current date and time for the tag
+TIMESTAMP=$(date +"%Y-%m-%d-%H-%M")
+NEW_TAG="${IMAGE_NAME}:${TIMESTAMP}"
+
+# Build and push Docker image
+docker build -t "${NEW_TAG}" .
+docker push "${NEW_TAG}"
+echo "Image pushed: ${NEW_TAG}"
+
+# Update Terraform configuration
+TF_DIR="/home/gruni/Projects/${PROJECT_NAME}/terraform"
+sed -i "s|${IMAGE_NAME}:.*|${NEW_TAG}|" "${TF_DIR}/main.tf"
+
+# Apply Terraform
+cd "${TF_DIR}"
+terraform apply -auto-approve
+echo "Terraform applied with new image tag: ${NEW_TAG}"

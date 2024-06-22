@@ -1,16 +1,46 @@
 #!/bin/bash
 
+usage() {
+  echo "Usage: $0 [-t template_name] <module_name>"
+  exit 1
+}
+
+# Parse options
+while getopts ":t:" opt; do
+  case ${opt} in
+    t )
+      template=$OPTARG
+      ;;
+    \? )
+      usage
+      ;;
+  esac
+done
+shift $((OPTIND -1))
+
 # Check if module name is provided
 if [ -z "$1" ]
 then
-  echo "Usage: $0 <module_name>"
-  exit 1
+  usage
 fi
 
 MODULE_NAME=$1
 MODULE_DIR="../modules/$MODULE_NAME"
+TEMPLATE_DIR="$HOME/scripts/templates/terraform/$template"
 
-# Create the module directory and empty files
-mkdir -p $MODULE_DIR && touch $MODULE_DIR/"$MODULE_NAME.tf" $MODULE_DIR/"$MODULE_NAME-vars.tf" $MODULE_DIR/"$MODULE_NAME-outputs.tf"
+# Create the module directory
+mkdir -p $MODULE_DIR
 
-echo "Empty module files created in $MODULE_DIR"
+if [ ! -z "$template" ] && [ -d "$TEMPLATE_DIR" ]; then
+  # Copy template files and rename them according to the module name
+  for file in "$TEMPLATE_DIR"/*; do
+    filename=$(basename -- "$file")
+    new_filename="${filename/template/$MODULE_NAME}"
+    cp "$file" "$MODULE_DIR/$new_filename"
+  done
+  echo "Module files created from template in $MODULE_DIR"
+else
+  # Create empty files if no template is specified or template directory does not exist
+  touch $MODULE_DIR/"$MODULE_NAME.tf" $MODULE_DIR/"$MODULE_NAME-vars.tf" $MODULE_DIR/"$MODULE_NAME-outputs.tf"
+  echo "Empty module files created in $MODULE_DIR"
+fi

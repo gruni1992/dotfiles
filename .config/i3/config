@@ -70,9 +70,7 @@ bindsym $mod+$alt+Right move workspace to output right
 
 # split in horizontal orientation
 bindsym $mod+h split h
-
-# split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+j split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -236,6 +234,9 @@ focus_follows_mouse no
 exec --no-startup-id ulauncher
 for_window[class="uauncher"] border none
 for_window [class=".*"] [floating] move absolute position center
+
+exec --no-startup-id diodon
+bindsym $mod+v exec diodon
 
 exec --no-startup-id idea
 exec --no-startup-id vivaldi 
