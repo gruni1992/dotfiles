@@ -6,3 +6,13 @@ set tabstop=4 shiftwidth=4 expandtab
 
 nmap oo o<ESC>
 nmap OO O<ESC>
+
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+inoremap <Left> <nop>
+inoremap <Right> <nop>

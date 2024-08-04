@@ -1,0 +1,8 @@
+cmd + ctrl + shift - left: yabai -m window --focus west || yabai -m display --focus west
+cmd + ctrl + shift - right: yabai -m window --focus east || yabai -m display --focus east
+cmd + ctrl + shift - up: yabai -m window --focus north  || yabai -m display --focus north
+cmd + ctrl + shift - down: yabai -m window --focus south || yabai -m display --focus south
+meh - left : WIN_ID=$(yabai -m query --windows --window | jq '.id'); yabai -m window --swap west; [[ ! $? == 0 ]] && (yabai -m display --focus west; yabai -m window last --insert east; yabai -m window --focus $WIN_ID; yabai -m window --display prev; yabai -m window --focus $WIN_ID);
+meh - right : WIN_ID=$(yabai -m query --windows --window | jq '.id'); yabai -m window --swap east; [[ ! $? == 0 ]] && (yabai -m display --focus east; yabai -m window first --insert west; yabai -m window --focus $WIN_ID; yabai -m window --display next; yabai -m window --focus $WIN_ID);
+meh - up: yabai -m window --swap north || yabai -m window --display north
+meh - down: yabai -m window --swap south || yabai -m window --display south
