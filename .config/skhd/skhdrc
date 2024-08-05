@@ -6,3 +6,8 @@ meh - left : WIN_ID=$(yabai -m query --windows --window | jq '.id'); yabai -m wi
 meh - right : WIN_ID=$(yabai -m query --windows --window | jq '.id'); yabai -m window --swap east; [[ ! $? == 0 ]] && (yabai -m display --focus east; yabai -m window first --insert west; yabai -m window --focus $WIN_ID; yabai -m window --display next; yabai -m window --focus $WIN_ID);
 meh - up: yabai -m window --swap north || yabai -m window --display north
 meh - down: yabai -m window --swap south || yabai -m window --display south
+
+# rezise
+cmd + ctrl + shift - r: yabai -m window --resize right:-20:0
+cmd + ctrl + shift - t: yabai -m window --resize right:20:0
+

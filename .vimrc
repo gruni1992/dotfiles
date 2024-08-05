@@ -16,3 +16,5 @@ inoremap <Up> <nop>
 inoremap <Down> <nop>
 inoremap <Left> <nop>
 inoremap <Right> <nop>
+
+vnoremap p "_dP

@@ -4,20 +4,12 @@
 <dict>
 	<key>Default Bookmark Guid</key>
 	<string>58E9149E-3DEB-456A-8655-AA6FD8F62198</string>
-	<key>FunctionKey</key>
-	<integer>10</integer>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
 	<key>IRMemory</key>
 	<integer>4</integer>
-	<key>LeftCommand</key>
-	<integer>7</integer>
-	<key>LeftControl</key>
-	<integer>11</integer>
-	<key>LeftOption</key>
-	<integer>2</integer>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -2213,7 +2205,7 @@
 			<key>HotKey Window Dock Click Action</key>
 			<integer>0</integer>
 			<key>HotKey Window Floats</key>
-			<true/>
+			<false/>
 			<key>HotKey Window Reopens On Activation</key>
 			<false/>
 			<key>Idle Code</key>
@@ -2714,14 +2706,6 @@
 	</array>
 	<key>OpenBookmark</key>
 	<false/>
-	<key>RightCommand</key>
-	<integer>8</integer>
-	<key>RightControl</key>
-	<integer>12</integer>
-	<key>RightOption</key>
-	<integer>3</integer>
-	<key>ShowSecureKeyboardEntryIndicator</key>
-	<true/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>TabStyleWithAutomaticOption</key>
