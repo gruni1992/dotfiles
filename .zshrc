@@ -140,5 +140,5 @@ function kdefault() {
 }
 
 functino sd() {
-    cap && shutdown
+    cap && sudo shutdown -h now
 }
