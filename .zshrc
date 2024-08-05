@@ -138,3 +138,7 @@ function kgp() {
 function kdefault() {
     kubectl config set-context --current --namespace="$@"
 }
+
+functino sd() {
+    cap && shutdown
+}
