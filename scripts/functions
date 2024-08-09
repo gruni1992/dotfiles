@@ -2,6 +2,10 @@ function vzsh() {
     vim ~/.zshrc && source $_ && cap
 }
 
+function vfun() {
+    vim ~/scripts/functions && source $_ && cap
+}
+
 function vyabai() {
     vim ~/.config/yabai/yabairc && source $_ && cap
 }
