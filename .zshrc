@@ -1,6 +1,5 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-config pull
 export PATH=$HOME/scripts:$PATH
 
 # Path to your Oh My Zsh installation.
@@ -107,38 +106,5 @@ source $ZSH/oh-my-zsh.sh
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-function vzsh() {
-    vim ~/.zshrc && source $_ && cap
-}
 
-function vyabai() {
-    vim ~/.config/yabai/yabairc && source $_ && cap
-}
-
-function vskhd() {
-    vim ~/.config/skhd/skhdrc && cap
-}
-
-function vvim() {
-    vim ~/.vimrc && cap
-}
-
-function k() {
-    kubectl "$@"
-}
-
-function kg() {
-    kubectl get "$@"
-}
-
-function kgp() {
-    kubectl get pods "$@"
-}
-
-function kdefault() {
-    kubectl config set-context --current --namespace="$@"
-}
-
-functino sd() {
-    cap && sudo shutdown -h now
-}
+config pull
