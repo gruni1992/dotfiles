@@ -34,6 +34,10 @@ function kdefault() {
     kubectl config set-context --current --namespace="$@"
 }
 
-functino sd() {
+function sd() {
     cap && sudo shutdown -h now
+}
+
+function create-ts() {
+    mkdir $1 && cd $1 && 
 }
