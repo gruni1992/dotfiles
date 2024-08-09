@@ -15,8 +15,8 @@
 yabai -m config                                 \
     external_bar                 off:40:0       \
     menubar_opacity              1.0            \
-    mouse_follows_focus          off            \
-    focus_follows_mouse          off            \
+    mouse_follows_focus          on            \
+    focus_follows_mouse          on            \
     display_arrangement_order    default        \
     window_origin_display        default        \
     window_placement             second_child   \
@@ -45,7 +45,5 @@ yabai -m config                                 \
 yabai -m rule --add title=".*[Ss]ettings.*" manage=off
 yabai -m rule --add app="System Settings" manage=off sub-layer=above
 yabai -m rule --add app="iTerm2" manage=off sub-layer=above
-
-yabai -m config mouse_follows_focus on
 
 borders inactive_color=0xffe1e3e4 active_color=0xff494d64 width=5.0 &
