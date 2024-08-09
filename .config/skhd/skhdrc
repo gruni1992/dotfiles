@@ -12,7 +12,7 @@ meh - down: yabai -m window --swap south || yabai -m window --display south
 
 # Move window to display
 meh - z: yabai -m window --display 1 --focus
-meh - c: yabai -m window --display 2 --focus
+meh - x: yabai -m window --display 2 --focus
 meh - d: yabai -m window --display 3 --focus
 
 # rezise
