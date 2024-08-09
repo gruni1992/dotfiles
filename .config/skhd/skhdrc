@@ -16,6 +16,6 @@ meh - x: yabai -m window --display 2 --focus
 meh - d: yabai -m window --display 3 --focus
 
 # rezise
-cmd + ctrl + shift - r: yabai -m window --resize right:-20:0
-cmd + ctrl + shift - t: yabai -m window --resize right:20:0
+meh - r: yabai -m window --resize right:-20:0
+meh - t: yabai -m window --resize right:20:0
 
