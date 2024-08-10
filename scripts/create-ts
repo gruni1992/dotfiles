@@ -1,0 +1,40 @@
+#!/bin/zsh
+set -e
+# Check for project name argument
+if [ -z "$1" ]; then
+  echo "Please provide a project name."
+  exit 1
+fi
+
+PROJECT_NAME=$1
+
+# Create project directory
+mkdir "$HOME/Projects/$PROJECT_NAME"
+cd "$_"
+
+# Initialize Node.js project
+npm init -y
+
+# Install dependencies
+npm install -D typescript ts-node @types/node
+
+# Initialize TypeScript configuration
+npx tsc --init > dev/null
+
+# copy template tsconfig.json
+cp $HOME/scripts/templates/typescript/tsconfig.json .
+echo "copied the template tsconfig"
+
+# Create source directory and entry file
+mkdir src
+
+cat <<EOT > src/index.ts
+console.log("Hello World")
+EOT
+
+# Compile TypeScript to JavaScript
+npx tsc
+
+echo "Project $PROJECT_NAME created and compiled successfully!"
+echo "node $(pwd)/dist/index.js"
+

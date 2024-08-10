@@ -38,6 +38,6 @@ function sd() {
     cap && sudo shutdown -h now
 }
 
-function create-ts() {
-    mkdir $1 && cd $1 && 
+newfile() {
+    mkdir -p $( dirname "$1") && touch "$1"
 }
