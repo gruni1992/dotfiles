@@ -41,3 +41,9 @@ nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap oo o<ESC>
 nnoremap OO O<ESC>
 nnoremap <leader>a m#ggVGy`#
+
+nnoremap <leader>w [w
+nnoremap <leader>e ]w
+nnoremap <leader>b [b
+nnoremap ci<leader>w l[bv]wc
+nnoremap di<leader>w l[bv]wd
