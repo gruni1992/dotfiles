@@ -43,6 +43,7 @@ yabai -m config                                 \
     mouse_drop_action            swap
 
 yabai -m rule --add title=".*[Ss]ettings.*" manage=off
+yabai -m rule --add title="SecurId Authenticator" manage=off
 yabai -m rule --add app="System Settings" manage=off sub-layer=above
 yabai -m rule --add app="iTerm2" manage=off sub-layer=above
 
