@@ -2704,6 +2704,8 @@
 			<string>/Users/tobiasgrunwald</string>
 		</dict>
 	</array>
+	<key>OnlyWhenMoreTabs</key>
+	<false/>
 	<key>OpenBookmark</key>
 	<false/>
 	<key>PointerActions</key>
@@ -2739,6 +2741,8 @@
 			<string>kNextWindowPointerAction</string>
 		</dict>
 	</dict>
+	<key>PromptOnQuit</key>
+	<false/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>TabStyleWithAutomaticOption</key>
