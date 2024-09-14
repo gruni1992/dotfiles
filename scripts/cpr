@@ -1,0 +1,42 @@
+#!/bin/zsh
+
+if [ -z "$1" ]; then
+    echo "Usage: cpr <branch-name>"
+    exit 1
+fi
+
+branch_arg="$1"
+base_branch=$(git rev-parse --abbrev-ref HEAD)
+
+# Replace '-' with '_' in branch name
+branch_name="${branch_arg//-/_}"
+
+# Prepare commit message and PR title
+if [[ "$branch_arg" == *"_"* ]]; then
+    parts=("${(s/_/)branch_arg}")
+    if [[ "${parts[1]}" == *"-"* ]]; then
+        # First part is likely a ticket prefix
+        commit_parts=("${parts[@]:1}")
+    else
+        commit_parts=("${parts[@]}")
+    fi
+else
+    commit_parts=("$branch_arg")
+fi
+
+# Combine commit parts and replace '-' and '_' with spaces
+commit_msg="${(j:_:)commit_parts}"
+commit_msg="${commit_msg//[_-]/ }"
+
+# Create new branch
+git checkout -b "$branch_name"
+
+# Stage and commit all changes
+git add .
+git commit -m "$commit_msg"
+
+# Push branch to origin
+git push -u origin "$branch_name"
+
+# Create a pull request targeting the 'main' branch
+gh pr create --title "$commit_msg" --base "$base_branch"

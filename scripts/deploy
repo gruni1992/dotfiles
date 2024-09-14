@@ -23,7 +23,8 @@ echo "Image pushed: ${NEW_TAG}"
 
 # Update Terraform configuration
 TF_DIR="${HOME}/Projects/${PROJECT_NAME}/infrastructure/main"
-sed -i '' "s|${IMAGE_NAME}:.*\"|${NEW_TAG}\"|" "${TF_DIR}/main.tf"
+sed -i.bak "s|${IMAGE_NAME}:.*\"|${NEW_TAG}\"|" "${TF_DIR}/main.tf"
+rm ${TF_DIR}/main.tf.bak
 
 # Apply Terraform
 cd "${TF_DIR}"
