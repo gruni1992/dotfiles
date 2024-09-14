@@ -17,13 +17,13 @@ TIMESTAMP=$(date +"%Y-%m-%d-%H-%M")
 NEW_TAG="${IMAGE_NAME}:${TIMESTAMP}"
 
 # Build and push Docker image
-docker build -t "${NEW_TAG}" .
+docker buildx build --platform linux/amd64 -t "${NEW_TAG}" .
 docker push "${NEW_TAG}"
 echo "Image pushed: ${NEW_TAG}"
 
 # Update Terraform configuration
-TF_DIR="/home/gruni/Projects/${PROJECT_NAME}/terraform"
-sed -i "s|${IMAGE_NAME}:.*|${NEW_TAG}|" "${TF_DIR}/main.tf"
+TF_DIR="${HOME}/Projects/${PROJECT_NAME}/infrastructure/main"
+sed -i '' "s|${IMAGE_NAME}:.*\"|${NEW_TAG}\"|" "${TF_DIR}/main.tf"
 
 # Apply Terraform
 cd "${TF_DIR}"
