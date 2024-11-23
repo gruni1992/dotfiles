@@ -27,6 +27,7 @@ map Q gq
 
 set clipboard=unnamedplus   " using system clipboard
 set easymotion
+set timeoutlen=500 " length of a key sequence to complete. Default: 1000
 Plug 'easymotion/vim-easymotion'
 map <leader>F <Plug>(easymotion-s)
 map <leader>f <Plug>(easymotion-f)
@@ -41,6 +42,7 @@ nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap oo o<ESC>
 nnoremap OO O<ESC>
 nnoremap <leader>a m#ggVGy`#
+inoremap {{ {}<ESC>i
 
 nnoremap <leader>w [w
 nnoremap <leader>e ]w
