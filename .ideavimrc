@@ -43,6 +43,8 @@ nnoremap oo o<ESC>
 nnoremap OO O<ESC>
 nnoremap <leader>a m#ggVGy`#
 inoremap {{ {}<ESC>i
+inoremap (( ()<ESC>i
+inoremap [[ []<ESC>i
 
 nnoremap <leader>w [w
 nnoremap <leader>e ]w
