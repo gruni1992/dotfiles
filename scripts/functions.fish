@@ -1,9 +1,3 @@
-function vzsh
-    vim ~/.zshrc
-    source ~/.zshrc
-    cap
-end
-
 function vfun
     vim ~/scripts/functions
     source ~/scripts/functions
@@ -24,22 +18,6 @@ end
 function vvim
     vim ~/.vimrc
     cap
-end
-
-function k
-    kubectl $argv
-end
-
-function kg
-    kubectl get $argv
-end
-
-function kgp
-    kubectl get pods $argv
-end
-
-function kdefault
-    kubectl config set-context --current --namespace=$argv
 end
 
 function sd
