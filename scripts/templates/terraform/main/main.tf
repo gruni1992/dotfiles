@@ -11,10 +11,10 @@ terraform {
 }
 
 locals {
-  app_name         = "GRUNI_APP_NAME"
-  namespace        = "GRUNI_APP_NAME"
-  base_host        = "GRUNI_APP_NAME.gruni.cloud"
-  backend_image    = "harbor.gruni.cloud/GRUNI_APP_NAME/backend:2024-11-23-16-47"
+  app_name      = "GRUNI_APP_NAME"
+  namespace     = "GRUNI_APP_NAME"
+  base_host     = "GRUNI_APP_NAME.gruni.cloud"
+  backend_image = "harbor.gruni.cloud/GRUNI_APP_NAME/backend:2024-11-23-16-47"
 }
 
 resource "kubernetes_namespace_v1" "GRUNI_APP_NAME" {
@@ -40,6 +40,7 @@ module "ingress" {
 
 module "backend" {
   source    = "../modules/backend"
+  name      = "backend"
   app_name  = local.app_name
   image     = local.backend_image
   namespace = local.namespace

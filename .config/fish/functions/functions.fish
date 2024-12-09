@@ -29,3 +29,8 @@ function newfile
     mkdir -p (dirname $argv[1])
     touch $argv[1]
 end
+
+function copyfile
+    mkdir -p (dirname $argv[2])
+    command cp $argv
+end

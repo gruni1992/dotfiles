@@ -1,0 +1,16 @@
+#!/usr/bin/env fish
+
+# Set the base paths
+set CURRENT_PATH (pwd)
+set PROJECTS_PATH "$HOME/Projects"
+
+# Validate that we're inside the Projects directory
+if not string match -q "*$PROJECTS_PATH/*" $CURRENT_PATH
+    echo "Error: Current path is not under $PROJECTS_PATH/"
+    exit 1
+end
+
+# Extract the project and app name
+set PROJECT_PATH (string match -r "$PROJECTS_PATH/[^/]+" $CURRENT_PATH)
+set APP_NAME (basename $PROJECT_PATH)
+echo $APP_NAME

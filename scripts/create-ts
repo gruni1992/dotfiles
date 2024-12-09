@@ -1,54 +1,62 @@
-#!/bin/zsh
-set -e
+#!/usr/bin/env fish
 
 # Check for project name argument
-if [ -z "$1" ]; then
-  echo "Please provide a project name."
-  exit 1
-fi
+if test (count $argv) -eq 0
+    echo "Please provide a project name."
+    exit 1
+end
 
-PROJECT_NAME=$1
+
+argparse f/folder= without-git without-infra -- $argv
+or return
+
+set PROJECT_NAME $argv[1]
+set -q _flag_folder; or set _flag_folder backend
 
 # Create project directory
-mkdir "$HOME/Projects/$PROJECT_NAME"
-cd "$_"
+mkdir -p "$HOME/Projects/$PROJECT_NAME/$_flag_folder" ; or exit
+cd "$HOME/Projects/$PROJECT_NAME/$_flag_folder" ; or exit
 
 # Initialize Node.js project
-npm init -y
+npm init -y ; or exit
 
 # Install dependencies
-npm install -D typescript ts-node @types/node
+npm install -D typescript ts-node @types/node ; or exit
 
 # Initialize TypeScript configuration
-npx tsc --init > /dev/null
+npx tsc --init > /dev/null ; or exit
 
-# copy template tsconfig.json
-cp $HOME/scripts/templates/typescript/tsconfig.json .
-echo "copied the template tsconfig"
+# Copy template tsconfig.json
+cp $HOME/scripts/templates/typescript/tsconfig.json . ; or exit
+echo "Copied the template tsconfig" ; or exit
 
 # Create source directory and entry file
-mkdir src
+mkdir -p src ; or exit
 
-cat <<EOT > src/index.ts
-console.log("Hello World")
-EOT
+echo 'console.log("Hello World")' > src/index.ts ; or exit
 
 # Compile TypeScript to JavaScript
-npx tsc
+npx tsc ; or exit
 
-# git stuff
-git init
-git branch -M main
-cp $HOME/scripts/templates/typescript/.gitignore.template .gitignore
-git add .gitignore
-git commit -m "add .gitignore"
-git add .
-git commit -m "Initialize ts"
+if not set -q _flag_without_infra
+  init-infra
+end
 
-gh repo create $PROJECT_NAME --private
-git remote add origin "https://github.com/gruni1992/$PROJECT_NAME.git"
-git push -u origin main
+if not set -q _flag_without_git
+  # Git initialization and setup
+  git init ; or exit
+  git branch -M main ; or exit
+  cp $HOME/scripts/templates/typescript/.gitignore.template .gitignore ; or exit
+  git add .gitignore ; or exit
+  git commit -m "add .gitignore" ; or exit
+  git add . ; or exit
+  git commit -m "Initialize ts" ; or exit
 
+  # Create GitHub repository and push
+  gh repo create $PROJECT_NAME --private ; or exit
+  git remote add origin "https://github.com/gruni1992/$PROJECT_NAME.git" ; or exit
+  git push -u origin main ; or exit
+end
+
+# Final messages
 echo "Project $PROJECT_NAME created and compiled successfully!"
-echo "node $(pwd)/dist/index.js"
-

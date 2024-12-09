@@ -6,7 +6,7 @@ variable "hostname" {
   type = string
 }
 
-variable "secret_name" {
+variable "app_name" {
   type = string
 }
 

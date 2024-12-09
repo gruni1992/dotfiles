@@ -10,7 +10,7 @@ resource "kubernetes_ingress_v1" "ingress" {
     ingress_class_name = "nginx"
     tls {
       hosts       = [var.hostname]
-      secret_name = var.secret_name
+      secret_name ="${var.app_name}-tls"
     }
     rule {
       host = var.hostname

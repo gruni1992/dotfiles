@@ -1,0 +1,10 @@
+#!/usr/bin/env fish
+
+argparse f/folder= without-git -- $argv
+or return
+
+if not set -q _flag_without_git
+echo not set
+else
+  echo set
+end

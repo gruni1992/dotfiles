@@ -1,14 +1,14 @@
 locals {
-  name = var.app_name
+  name = var.name
   labels = {
     app  = var.app_name
-    tier = "" //todo
+    tier = var.name
   }
   env_variables = {
   }
 }
 
-resource "kubernetes_service_v1" "" { //todo
+resource "kubernetes_service_v1" "service" {
   metadata {
     name      = local.name
     namespace = var.namespace
@@ -16,15 +16,15 @@ resource "kubernetes_service_v1" "" { //todo
   }
   spec {
     selector = local.labels
-    port { //todo
+    port {
       name        = "http"
-      port        = 80
-      target_port = 80
+      port        = var.port
+      target_port = var.target_port
     }
   }
 }
 
-resource "kubernetes_deployment_v1" "" { //todo
+resource "kubernetes_deployment_v1" "deployment" {
   timeouts {
     create = "2m"
     update = "2m"
@@ -47,9 +47,9 @@ resource "kubernetes_deployment_v1" "" { //todo
         container {
           name  = local.name
           image = var.image
-          port { //todo
+          port {
             name           = "http"
-            container_port = 80
+            container_port = var.target_port
           }
 
           dynamic "env" {

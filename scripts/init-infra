@@ -1,1 +1,63 @@
-#!/bin/zsh
+#!/usr/bin/env fish
+
+# Extract the project and app name
+set PROJECT_PATH "$HOME/Projects/$(appname)"
+
+# Define infrastructure paths
+set INFRASTRUCTURE_PATH "$PROJECT_PATH/infrastructure"
+set MAIN_INFRASTRUCTURE_PATH "$INFRASTRUCTURE_PATH/main"
+set MODULE_INFRASTRUCTURE_PATH "$INFRASTRUCTURE_PATH/modules"
+
+# Define the template path
+set BASE_TEMPLATE_PATH "$HOME/scripts/templates/terraform"
+
+# Function to create directories
+function create_dirs
+    for dir in $argv
+        mkdir -p $dir; or begin
+            echo "Error: Failed to create directory $dir"
+            exit 1
+        end
+    end
+end
+
+# Function for sed replacements with backup removal
+function replace_in_file
+    if test -f $argv[1]
+        sed -i.bak $argv[2] $argv[1]; or begin
+            echo "Error: sed operation failed on $argv[1]"
+            exit 1
+        end
+        rm $argv[1].bak
+    else
+        echo "Error: File not found: $argv[1]"
+        exit 1
+    end
+end
+
+# Create the infrastructure directory structure
+create_dirs $MAIN_INFRASTRUCTURE_PATH \
+            $MODULE_INFRASTRUCTURE_PATH/ingress \
+            $MODULE_INFRASTRUCTURE_PATH/harbor
+
+# Copy templates to the corresponding directories
+cp -R $BASE_TEMPLATE_PATH/.gitignore $INFRASTRUCTURE_PATH
+cp -R $BASE_TEMPLATE_PATH/main/* $MAIN_INFRASTRUCTURE_PATH
+cp -R $BASE_TEMPLATE_PATH/ingress/* $MODULE_INFRASTRUCTURE_PATH/ingress
+cp -R $BASE_TEMPLATE_PATH/harbor/* $MODULE_INFRASTRUCTURE_PATH/harbor
+
+replace_in_file "$MAIN_INFRASTRUCTURE_PATH/main.tf" "s|GRUNI_APP_NAME|$(appname)|g"
+
+echo "Copied infrastructure templates to $MAIN_INFRASTRUCTURE_PATH"
+
+# Handle terraform.tfvars
+if test -f "$MAIN_INFRASTRUCTURE_PATH/template.terraform.tfvars"
+    cp "$MAIN_INFRASTRUCTURE_PATH/template.terraform.tfvars" "$MAIN_INFRASTRUCTURE_PATH/terraform.tfvars"
+    set HARBOR_PASSWORD (op read "op://personal/harbor/password")
+    replace_in_file "$MAIN_INFRASTRUCTURE_PATH/terraform.tfvars" "s|harbor_password=\"\"|harbor_password=\"$HARBOR_PASSWORD\"|g"
+    echo "Inserted harbor password"
+else
+    echo "Error: template.terraform.tfvars not found in $MAIN_INFRASTRUCTURE_PATH"
+    exit 1
+end
+
