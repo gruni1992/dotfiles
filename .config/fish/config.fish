@@ -1,1 +1,3 @@
-source ~/scripts/functions.fish;clear;
+if status is-interactive
+    source ~/scripts/functions.fish
+end
