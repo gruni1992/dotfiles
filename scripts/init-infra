@@ -49,6 +49,8 @@ cp -R $BASE_TEMPLATE_PATH/harbor/* $MODULE_INFRASTRUCTURE_PATH/harbor
 replace_in_file "$MAIN_INFRASTRUCTURE_PATH/main.tf" "s|GRUNI_APP_NAME|$(appname)|g"
 
 echo "Copied infrastructure templates to $MAIN_INFRASTRUCTURE_PATH"
+cd $PROJECT_PATH
+tfmodule -t service_deployment backend
 
 # Handle terraform.tfvars
 if test -f "$MAIN_INFRASTRUCTURE_PATH/template.terraform.tfvars"

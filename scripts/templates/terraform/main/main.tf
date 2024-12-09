@@ -10,6 +10,10 @@ terraform {
   }
 }
 
+variable "harbor_password" {
+  type = string
+}
+
 locals {
   app_name      = "GRUNI_APP_NAME"
   namespace     = "GRUNI_APP_NAME"
