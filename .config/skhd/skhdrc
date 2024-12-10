@@ -20,4 +20,4 @@ meh - r: yabai -m window --resize right:-20:0
 meh - t: yabai -m window --resize right:20:0
 
 # float
-meh - f: yabai -m window --toggle float
+cmd + ctrl + shift - f: yabai -m window --toggle float
