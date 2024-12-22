@@ -1,0 +1,9 @@
+#!/usr/bin/env fish
+
+pnpm i zod
+pnpm i dotenv
+
+touch .env
+touch .env.template
+
+cp $HOME/scripts/templates/typescript/env.ts . ; or exit

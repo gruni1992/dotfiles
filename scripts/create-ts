@@ -21,7 +21,7 @@ cd "$HOME/Projects/$PROJECT_NAME/$_flag_folder" ; or exit
 npm init -y ; or exit
 
 # Install dependencies
-npm install -D typescript ts-node @types/node ; or exit
+pnpm install -D typescript ts-node @types/node ; or exit
 
 # Initialize TypeScript configuration
 npx tsc --init > /dev/null ; or exit
