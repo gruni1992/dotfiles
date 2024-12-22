@@ -6,4 +6,4 @@ pnpm i dotenv
 touch .env
 touch .env.template
 
-cp $HOME/scripts/templates/typescript/env.ts . ; or exit
+cp $HOME/scripts/templates/typescript/env.ts src ; or exit
