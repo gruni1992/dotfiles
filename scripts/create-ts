@@ -30,6 +30,9 @@ npx tsc --init > /dev/null ; or exit
 cp $HOME/scripts/templates/typescript/tsconfig.json . ; or exit
 echo "Copied the template tsconfig" ; or exit
 
+# Copy Dockerfile
+cp $HOME/scripts/templates/typescript/Dockerfile . ; or exit
+
 # Create source directory and entry file
 mkdir -p src ; or exit
 
