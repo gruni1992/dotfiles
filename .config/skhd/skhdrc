@@ -5,10 +5,15 @@ cmd + ctrl + shift - up: yabai -m window --focus north  || yabai -m display --fo
 cmd + ctrl + shift - down: yabai -m window --focus south || yabai -m display --focus south
 
 # Move windows
-meh - left : WIN_ID=$(yabai -m query --windows --window | jq '.id'); yabai -m window --swap west; [[ ! $? == 0 ]] && (yabai -m display --focus west; yabai -m window last --insert east; yabai -m window --focus $WIN_ID; yabai -m window --display prev; yabai -m window --focus $WIN_ID);
-meh - right : WIN_ID=$(yabai -m query --windows --window | jq '.id'); yabai -m window --swap east; [[ ! $? == 0 ]] && (yabai -m display --focus east; yabai -m window first --insert west; yabai -m window --focus $WIN_ID; yabai -m window --display next; yabai -m window --focus $WIN_ID);
-meh - up: yabai -m window --swap north || yabai -m window --display north
-meh - down: yabai -m window --swap south || yabai -m window --display south
+# meh - left : WIN_ID=$(yabai -m query --windows --window | jq '.id'); yabai -m window --swap west; [[ ! $? == 0 ]] && (yabai -m display --focus west; yabai -m window last --insert east; yabai -m window --focus $WIN_ID; yabai -m window --display prev; yabai -m window --focus $WIN_ID);
+# meh - right : WIN_ID=$(yabai -m query --windows --window | jq '.id'); yabai -m window --swap east; [[ ! $? == 0 ]] && (yabai -m display --focus east; yabai -m window first --insert west; yabai -m window --focus $WIN_ID; yabai -m window --display next; yabai -m window --focus $WIN_ID);
+# meh - up: yabai -m window --swap north || yabai -m window --display north
+# meh - down: yabai -m window --swap south || yabai -m window --display south
+meh - left: yabai -m window --warp west
+meh - right: yabai -m window --warp east
+meh - up: yabai -m window --warp north
+meh - down: yabai -m window --warp south
+
 
 # Move window to display
 meh - z: yabai -m window --display 1 --focus
