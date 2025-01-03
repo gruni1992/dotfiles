@@ -21,3 +21,9 @@ meh - t: yabai -m window --resize right:20:0
 
 # float
 cmd + ctrl + shift - f: yabai -m window --toggle float
+
+# maximize a window
+shift + cmd - m: yabai -m window --toggle zoom-fullscreen
+
+# balance tree of windows
+cmd + ctrl + shift - a: yabai -m space --balance
