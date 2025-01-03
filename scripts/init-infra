@@ -58,6 +58,10 @@ if test -f "$MAIN_INFRASTRUCTURE_PATH/template.terraform.tfvars"
     set HARBOR_PASSWORD (op read "op://personal/harbor/password")
     replace_in_file "$MAIN_INFRASTRUCTURE_PATH/terraform.tfvars" "s|harbor_password=\"\"|harbor_password=\"$HARBOR_PASSWORD\"|g"
     echo "Inserted harbor password"
+  cd $MAIN_INFRASTRUCTURE_PATH
+  terraform init
+  terraform apply -target kubernetes_namespace_v1.namespace -auto-approve
+  terraform apply -target module.harbor -auto-approve
 else
     echo "Error: template.terraform.tfvars not found in $MAIN_INFRASTRUCTURE_PATH"
     exit 1

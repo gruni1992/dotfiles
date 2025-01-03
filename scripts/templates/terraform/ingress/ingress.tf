@@ -10,10 +10,6 @@ variable "app_name" {
   type = string
 }
 
-variable "frontend_service_name" {
-  type = string
-}
-
 variable "backend_service_name" {
   type = string
 }
@@ -35,17 +31,6 @@ resource "kubernetes_ingress_v1" "ingress" {
     rule {
       host = var.hostname
       http {
-        path {
-          path = "/"
-          backend {
-            service {
-              name = var.frontend_service_name
-              port {
-                name = "http"
-              }
-            }
-          }
-        }
         path {
           path = "/api"
           backend {

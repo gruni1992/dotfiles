@@ -53,3 +53,11 @@ resource "kubernetes_secret" "registry_auth" {
     })
   }
 }
+
+resource "null_resource" "patch_default_sa" {
+  provisioner "local-exec" {
+    command = "kubectl patch serviceaccount default -n ${var.namespace} -p '{\"imagePullSecrets\": [{\"name\": \"registry-auth\"}]}'"
+  }
+
+  depends_on = [kubernetes_secret.registry_auth]
+}

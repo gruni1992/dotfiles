@@ -1,10 +1,12 @@
-FROM node@sha256:df01469346db2bf1cfc1f7261aeab86b2960efa840fe2bd46d83ff339f463665
+FROM node@sha256:0e910f435308c36ea60b4cfd7b80208044d77a074d16b768a81901ce938a62dc
 
 WORKDIR /usr/src/app
+RUN npm i -g pnpm
 COPY package*.json ./
-RUN npm install
+COPY pnpm-lock.yaml ./
+RUN pnpm install
 COPY . .
-RUN npm run build
+RUN pnpm build
 ENV NODE_ENV=production
 EXPOSE 3000
 CMD [ "node", "dist/index.js" ]

@@ -20,6 +20,10 @@ cd "$HOME/Projects/$PROJECT_NAME/$_flag_folder" ; or exit
 # Initialize Node.js project
 npm init -y ; or exit
 
+# Add the build script to package.json
+jq '.scripts.build = "tsc"' package.json > package.tmp && mv package.tmp package.json ; or exit
+echo "Added 'build' script to package.json"
+
 # Install dependencies
 pnpm install -D typescript ts-node @types/node ; or exit
 
@@ -47,6 +51,7 @@ end
 
 if not set -q _flag_without_git
   # Git initialization and setup
+  cd "$HOME/Projects/$PROJECT_NAME"
   git init ; or exit
   git branch -M main ; or exit
   cp $HOME/scripts/templates/typescript/.gitignore.template .gitignore ; or exit

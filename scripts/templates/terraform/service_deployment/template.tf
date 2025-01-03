@@ -88,3 +88,7 @@ resource "kubernetes_deployment_v1" "deployment" {
     }
   }
 }
+
+output "name" {
+  value = kubernetes_service_v1.service.metadata.0.name
+}

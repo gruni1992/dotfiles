@@ -21,7 +21,7 @@ locals {
   backend_image = "harbor.gruni.cloud/GRUNI_APP_NAME/backend:2024-11-23-16-47"
 }
 
-resource "kubernetes_namespace_v1" "GRUNI_APP_NAME" {
+resource "kubernetes_namespace_v1" "namespace" {
   metadata {
     name = local.namespace
   }
@@ -48,4 +48,6 @@ module "backend" {
   app_name  = local.app_name
   image     = local.backend_image
   namespace = local.namespace
+  port = 80
+  target_port = 3000
 }
