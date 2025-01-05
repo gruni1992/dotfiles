@@ -2,6 +2,6 @@
 source ~/.zshrc
 config add -u :/
 config add ~/scripts
-config add .config/fish
+config add ~/.config/fish
 config commit -m "config changed"
 config push
