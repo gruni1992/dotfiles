@@ -43,3 +43,7 @@ function cdpr
         echo "Not inside a Projects folder"
     end
 end
+
+function tttt
+echo 't'
+end
