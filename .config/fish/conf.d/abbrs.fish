@@ -17,3 +17,8 @@ abbr --add -a dcd docker compose down
 abbr --add -a dcr docker compose down
 abbr --add -a dcr docker compose down; docker compose up -d --build
 abbr --add -a pr cd /Users/tobiasgrunwald/Projects/aldi-analyze-it
+abbr --add -a tfi terraform init
+abbr --add -a kd kubernetes describe
+abbr --add -a kd kubectl describe
+abbr --add -a kex kubectl exec -it
+abbr --add -a dps docker ps

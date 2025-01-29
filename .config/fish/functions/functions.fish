@@ -44,3 +44,8 @@ function cdpr
     end
     cd $(pwd | gsed -E 's|(.*?/Projects/[^/]+).*|\1|')
 end
+
+function cdinfra
+    cdpr || exit
+    cd infrastructure/main
+end
