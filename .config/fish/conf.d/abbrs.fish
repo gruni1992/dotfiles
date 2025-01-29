@@ -22,3 +22,4 @@ abbr --add -a kd kubernetes describe
 abbr --add -a kd kubectl describe
 abbr --add -a kex kubectl exec -it
 abbr --add -a dps docker ps
+abbr --add -a klb kubectl logs svc/backend

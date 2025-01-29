@@ -5,7 +5,6 @@ pnpm i dotenv
 cdpr or
 cd backend || exit
 touch .env
-touch .env.template
 git add .env.template
 
 
