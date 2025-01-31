@@ -1,14 +1,28 @@
 #!/usr/bin/env fish
 
+function show_help
+    echo "Usage: create-ts [options] <project_name>"
+    echo ""
+    echo "Options:"
+    echo "  -f, --folder=FOLDER       Specify the folder name (default: backend)"
+    echo "  --without-git             Do not initialize a Git repository"
+    echo "  --without-infra           Do not initialize infrastructure"
+    echo "  -h, --help                Show this help message and exit"
+end
+
 # Check for project name argument
 if test (count $argv) -eq 0
     echo "Please provide a project name."
     exit 1
 end
 
-
-argparse f/folder= without-git without-infra -- $argv
+argparse f/folder= without-git without-infra h/help -- $argv
 or return
+
+if set -q _flag_help
+    show_help
+    exit 0
+end
 
 set PROJECT_NAME $argv[1]
 set -q _flag_folder; or set _flag_folder backend
