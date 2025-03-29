@@ -23,3 +23,7 @@ abbr --add -a kd kubectl describe
 abbr --add -a kex kubectl exec -it
 abbr --add -a dps docker ps
 abbr --add -a klb kubectl logs svc/backend
+abbr --add -a dps docker ps
+abbr --add -a dps docker ps
+abbr --add -a kgj kubectl get jobs
+abbr --add -a kxp kubectl delete pod

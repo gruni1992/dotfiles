@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
-pnpm i zod
-pnpm i dotenv
+pnpm add zod
+pnpm add dotenv
 cdpr or
 cd backend || exit
 touch .env

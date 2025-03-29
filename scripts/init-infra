@@ -35,6 +35,7 @@ function replace_in_file
     end
 end
 
+kubectx gruni.cloud
 # Create the infrastructure directory structure
 create_dirs $MAIN_INFRASTRUCTURE_PATH \
             $MODULE_INFRASTRUCTURE_PATH/ingress \

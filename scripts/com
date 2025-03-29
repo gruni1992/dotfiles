@@ -1,0 +1,54 @@
+#!/usr/bin/env zsh
+
+# Usage: if no prompt is provided, show usage message.
+if [[ $# -lt 1 ]]; then
+  echo "Usage: $0 \"Your prompt text\""
+  exit 1
+fi
+
+# Join all arguments into a single prompt string.
+prompt="$*"
+
+# Build the JSON payload; sessionId is set to "default".
+payload=$(printf '{"prompt": "%s", "sessionId": "default"}' "$prompt")
+
+# Create a temporary file to store the response body.
+tmpfile=$(mktemp /tmp/response.XXXXXX)
+
+# Call the API endpoint:
+# - -s for silent mode.
+# - -w "\n%{http_code}" to output the HTTP status code on a new line.
+# - -o "$tmpfile" to write the response body to a temporary file.
+# - Redirect stderr to /dev/null to hide extraneous messages.
+http_code=$(curl -s -w "\n%{http_code}" -o "$tmpfile" \
+  -H "Content-Type: application/json" \
+  -X POST -d "$payload" \
+  https://command-center.gruni.cloud/api/chat 2>/dev/null)
+
+# Remove any whitespace/newlines from the HTTP status code.
+http_code=$(echo "$http_code" | tr -d '[:space:]')
+
+# If the HTTP status code isn't "200", print an error and the raw response.
+if [[ "$http_code" != "200" ]]; then
+  echo "Error: Received HTTP status code $http_code"
+  echo "Response:"
+  cat "$tmpfile"
+  rm "$tmpfile"
+  exit 1
+fi
+
+# Read the response body from the temporary file.
+response=$(cat "$tmpfile")
+rm "$tmpfile"
+
+# Extract the "completion" field from the JSON response using jq.
+completion=$(echo "$response" | jq -r '.completion')
+
+# If the completion field is "null", print an error.
+if [[ "$completion" == "null" ]]; then
+  echo "Error: Could not find 'completion' in response."
+  exit 1
+fi
+
+# Print the completion text.
+echo "$completion"
